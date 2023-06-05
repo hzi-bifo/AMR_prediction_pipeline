@@ -1,4 +1,4 @@
-# AMR_prediction_pipeline
+# AMR phenotype prediction 
 
 ```
 main.sh
