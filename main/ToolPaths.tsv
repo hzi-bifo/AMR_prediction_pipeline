@@ -1,0 +1,8 @@
+
+# Variables required by each workflow
+	TOOL_HOME	PATH	SNAKEFILE
+denovo	denovo	$TOOL_HOME/lib:$PATH	$TOOL_HOME/denovo.in_one.smk
+expr	expr	$TOOL_HOME/lib:$PATH	$TOOL_HOME/expr.in_one.smk
+phylo	phylo	$TOOL_HOME/lib:$PATH	$TOOL_HOME/phylo.in_one.smk
+snps	snps	$TOOL_HOME/lib:$PATH	$TOOL_HOME/snps.in_one.smk
+
