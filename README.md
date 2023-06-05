@@ -20,7 +20,7 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 |species|||
 |SampleName|||
 |folds_setting|Phylogeny background.Can be one of: close, low_similarity, distant_phylo||
-|Software| Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, Point-/ResFinder||
+|Software| Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, ResFinder||
 
 **B.Optional parameters setting**
 
