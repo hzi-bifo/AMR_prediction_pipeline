@@ -5,9 +5,9 @@ An integrated software for AMR phenotype prediction. Prediction range of Species
 
 
 ## Available methods
-1. [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker) [[3]](#3), 
-2. [Kover 2.0](https://github.com/aldro61/kover) [[4]](#4),
-3. [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/) [[5]](#5).
+1. [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker) [[3]](#3)
+2. [Kover 2.0](https://github.com/aldro61/kover) [[4]](#4)
+3. [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/) [[5]](#5)
 
 
 
