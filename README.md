@@ -1,8 +1,20 @@
 # AMR phenotype prediction 
 
 
+An integrated software for AMR phenotype prediction. Prediction range of Species and antibiotics can be found <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">Data sets overview</a>, where Number of genomes in dicates the data size for training ML models. 
 
 
+## Available methods
+1. [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker) [[3]](#3), 
+2. [Kover 2.0](https://github.com/aldro61/kover) [[4]](#4),
+3. [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/) [[5]](#5), a direct association software based on AMR determinant database, was used as the baseline.
+
+
+
+
+## Prerequirements
+    - [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) (tested version: Miniconda2 4.8.4)
+    - [Linux](https://www.cyberciti.biz/faq/find-linux-distribution-name-version-number/) (tested version: AlmaLinux 8.5 )
 
 ## <a name="input"></a>Input file
 The input file is a yaml file `Config.yaml` at the root folder where all options are described:
