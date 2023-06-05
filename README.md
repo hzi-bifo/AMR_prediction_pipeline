@@ -13,8 +13,8 @@ An integrated software for AMR phenotype prediction. Prediction range of Species
 
 
 ## Prerequirements
-    - [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) (tested version: Miniconda2 4.8.4)
-    - [Linux](https://www.cyberciti.biz/faq/find-linux-distribution-name-version-number/) (tested version: AlmaLinux 8.5 )
+    -  Conda (tested version: Miniconda2 4.8.4)
+    -  Linux (tested version: AlmaLinux 8.5 )
 
 ## <a name="input"></a>Input file
 The input file is a yaml file `Config.yaml` at the root folder where all options are described:
