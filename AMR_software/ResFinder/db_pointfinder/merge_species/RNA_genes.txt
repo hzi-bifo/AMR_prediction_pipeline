@@ -1,0 +1,11 @@
+16S_rrsD_salmonella
+23S_escherichia_coli
+16S_rrsB_escherichia_coli
+16S_rrsC_escherichia_coli
+16S_rrsH_escherichia_coli
+16S_rRNA_neisseria_gonorrhoeae
+23S_rRNA_neisseria_gonorrhoeae
+rrs_mycobacterium_tuberculosis
+rrl_mycobacterium_tuberculosis
+23S_staphylococcus_aureus
+23S_campylobacter
