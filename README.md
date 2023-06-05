@@ -1,7 +1,7 @@
 # AMR phenotype prediction 
 
 
-An integrated software for AMR phenotype prediction. Prediction range of species and antibiotics can be found <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">Data sets overview</a>, where the "Number of genomes" column indicates the data size for training ML models. 
+An integrated software for AMR phenotype prediction. Prediction range of species and antibiotics can be found <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">here</a>, where the "Number of genomes" column indicates the data size for training ML models. 
 
 
 ## Available methods
