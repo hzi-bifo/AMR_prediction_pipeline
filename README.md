@@ -1,7 +1,7 @@
 # AMR phenotype prediction 
 
 
-An integrated software for AMR phenotype prediction, based on  [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker), [Kover 2.0](https://github.com/aldro61/kover), and [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/). Prediction range of species and antibiotics can be found <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">here</a>, where the "Number of genomes" column indicates the data size for training ML models (PhenotypeSeeker and Kover). 
+An integrated tool for AMR phenotype prediction, based on  [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker), [Kover 2.0](https://github.com/aldro61/kover), and [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/). Prediction range of species and antibiotics can be found <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">here</a>, where the "Number of genomes" column indicates the data size for training ML models (PhenotypeSeeker and Kover). 
 
 
 
