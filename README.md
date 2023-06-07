@@ -41,11 +41,23 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 ## Install
 
 ```
-cd install
-bash ./install.sh amr_env
+bash install/install.sh 
 ```
 
 
+ ## Output
+  
+ Example:
+ <path_to_results>/results
+├── sample1_Escherichia_coli
+│   └── resfinder_result.txt
+└── sample2_Escherichia_coli
+    └── resfinder_result.txt
+
+  
+  
+  
+  
 
 
 
