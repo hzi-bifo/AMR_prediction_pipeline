@@ -6,9 +6,13 @@ An integrated tool for AMR phenotype prediction, based on  [PhenotypeSeeker 0.7.
 
 
 ## Prerequirements
-- Conda (tested version: Miniconda2 4.8.4)
-- Linux (tested version: AlmaLinux 8.5 )
 
+- Linux (tested version: AlmaLinux 8.5 )
+- Conda (tested version: Miniconda2 4.8.4)
+- C++/11 capable compiler (e.g. gcc 4.7+, clang 3.5+, Apple/clang 6.0+).
+  
+  
+  
 ## <a name="input"></a>Input file
 The input file is a yaml file `Config.yaml` at the root folder where all options are described:
 
