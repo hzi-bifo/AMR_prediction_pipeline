@@ -48,13 +48,14 @@ bash install/install.sh
  ## Output
   
  Example:
+  ```
  <path_to_results>/results
 ├── sample1_Escherichia_coli
 │   └── resfinder_result.txt
 └── sample2_Escherichia_coli
     └── resfinder_result.txt
 
-  
+  ```
   
   
   
