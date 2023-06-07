@@ -56,5 +56,5 @@ bash ./install.sh amr_env
   
 3. Kover2.0 
   
-4. PhenotypeSeeker 1.0.0
+4. PhenotypeSeeker 0.7.3
  
