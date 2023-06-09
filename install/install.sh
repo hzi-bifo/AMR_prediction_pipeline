@@ -18,31 +18,11 @@ function parse_yaml {
    }'
 }
 
-
+eval $(parse_yaml Config.yaml)
 
 export AMR_HOME=$( dirname $( dirname $( realpath ${BASH_SOURCE[0]} ) ) )
 export PATH=$AMR_HOME:$AMR_HOME/main:$PATH
 echo 'AMR_HOME is '$AMR_HOME
-
-
-
-####  1. install dsk for Kover ##########################################################################
-#### https://github.com/GATB/dsk
-### Requirements
-### CMake 3.1+; see http://www.cmake.org/cmake/resources/software.html#
-### C++/11 capable compiler (e.g. gcc 4.7+, clang 3.5+, Apple/clang 6.0+).
-cd ./AMR_software/Kover/dsk
-sh INSTALL
-
-###testing
-cd ../scripts  # we suppose you are in the build directory
-./simple_test.sh
-echo "dsk installed."
-
-cd ${AMR_HOME}
-
-########################################################################################################
-####  2. install dsk for Kover ##########################################################################
 
 
 
@@ -60,36 +40,51 @@ check_conda_channels () {
 }
 
 
-# user's input
-core_env_name=''
-if [ "$#" -lt 1 ]; then
-  core_env_name='snakemake_env10'
-else
-  core_env_name=$1
-fi
-echo 'Creating environment "'$core_env_name'" for snakemake pipeline.'
 
 
 ####  3. install conda  env ##################################################################################
 # ensure the conda channels
 
 check_conda_channels ||{ echo "Errors in setting conda channels"; exit; }
-if [ -d $( dirname $( dirname $( /usr/bin/which conda ) ) )/envs/$core_env_name ]; then
-  echo '-----'
-  echo 'Naming conflict: an existing environment with same name found: '
-  echo $( dirname $( dirname $( /usr/bin/which conda ) ) )/envs/$core_env_name
-  exit
-else
-  # start creating the environment
-  conda env create -n ${core_env_name} --file=snakemake_env.yml || { echo "Errors in downloading the core environment"; exit; }
 
+echo "installing..."
+#  conda env create -n ${core_env_name} --file=snakemake_env.yml || { echo "Errors in downloading the core environment"; exit; }
 #  conda env create -n  --file=snakemake_env.yml || { echo "Errors in downloading the core environment"; exit; }
-
+echo ${kover_env_name}
+conda env create -n ${kover_env_name} -f ./install/amr_env.yml || { echo "Errors in creating Kover envs"; exit; }
 #  conda env create -n ${resfinder_env} --file=./install/res_env.yml || { echo "Errors in creating ResFinder envs"; exit; }
 
 
 
 
-fi
+
+
+
 
 ########################################################################################################
+####  2. install dsk for Kover ##########################################################################
+#### https://github.com/GATB/dsk
+### Requirements
+### CMake 3.1+; see http://www.cmake.org/cmake/resources/software.html#
+### C++/11 capable compiler (e.g. gcc 4.7+, clang 3.5+, Apple/clang 6.0+).
+echo ${kover_env_name}
+source activate ${kover_env_name}
+echo $CONDA_DEFAULT_ENV
+cd ./AMR_software/Kover/dsk
+sh INSTALL
+
+###testing
+echo "testing dsk ..."
+cd ${AMR_HOME}
+cd ./AMR_software/Kover/dsk/scripts  # we suppose you are in the build directory
+./simple_test.sh
+echo "dsk installed."
+
+cd ${AMR_HOME}
+
+########################################################################################################
+## 3. unzip examples and trained  models.
+unzip examples.zip -d .
+unzip ./AMR_software/Kover/bin.zip -d ./AMR_software/Kover/
+unzip ./AMR_software/PhenotypeSeeker/bin.zip -d ./AMR_software/PhenotypeSeeker/
+

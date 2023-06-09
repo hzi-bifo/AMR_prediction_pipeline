@@ -1,34 +1,40 @@
 
+
+
+###21.
 dryrun: N
-###1. Sample to be tested. each genome should be stored in one fna file.
-samplePath: /net/projects/BIFO/patric_genome/562.22542.fna
 ###2. The path to store the direct results.
 output_path: ./
 ###3. The path to store the temporary files
 log_path: ./
 ###4 . max cpu
 n_jobs: 5
-###5 . Species
+
+####5. Sample  information. If batch is set as True, then will read sample information from sample.txt
+batch: False
+batch_file: sample.txt
+SampleName: sample1
+### Sample to be tested. each genome should be stored in one fna file.
+SamplePath: example/562.22542.fna
+### Species
 species: Escherichia_coli
 
-###6. Sample name
-SampleName: sample1
 
-### 7. Phylogeny background. Can be one of: close, low_similarity, distant_phylo,
+
+### 6. Phylogeny background. Can be one of: close, low_similarity, distant_phylo,
 ### each indicating the degree of phylogeny/sequence similarity relationship between your sample and genomes used in this study.
 ### close means high similarity or low phylogeny divergence, low_similarity means low similarity, distant_phylo means high phylogeny divergence.
 folds_setting: close
 
-### 8. Software. Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, Point-/ResFinder
-Software: ResFinder
+### 7. Software. Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, ResFinder
+Software: Kover
 
 
 ############################################################################################################################
 #B. Env: Optional parameters setting
 ############################################################################################################################
-amr_env_name: amr
-PhenotypeSeeker_env_name: PhenotypeSeeker2
+kover_env_name: kover_pipe
+phenotypeSeeker_env_name: PhenotypeSeeker_env
 resfinder_env: res_env
-
 main_env_name: snakemake
 

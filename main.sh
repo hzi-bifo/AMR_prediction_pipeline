@@ -23,52 +23,94 @@ export PYTHONPATH=$PWD
 
 
 
-## TODO  anti_list beore copying to packages usage! make env list
 
-if [ ${Software} == *"PhenotypeSeeker"* ]; then
-  source activate ${PhenotypeSeeker_env_name}
+
+predict() {
+
+echo "Sample name: ${SampleName_each}"
+echo "Software: ${Software} "
+
+
+if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
+  source activate ${phenotypeSeeker_env_name}
 
    bash ./AMR_software/PhenotypeSeeker/predictor_pts.sh \
-   ${species} \
-   ${samplePath} \
-   ${SampleName} \
+   ${species_each} \
+   ${SamplePath_each} \
+   ${SampleName_each} \
    ${folds_setting} \
    ${output_path} \
    ${log_path}
 
 
-
-
-#todo, still need to change dsk location in bash file!
+#todo, still need to change dsk location in bash file! seems finished.
 # output:
-elif [${Software} == *"Kover"* ]; then
-  source activate ${amr_env_name}
-   bash ./AMR_software/Kover/predictor_kover.sh \
-    ${species} \
-    ${samplePath} \
-    ${SampleName} \
+elif [[ ${Software} == *"Kover"* ]]; then
+  source activate ${kover_env_name}
+  bash ./AMR_software/Kover/predictor_kover.sh \
+    ${species_each} \
+    ${SamplePath_each} \
+    ${SampleName_each} \
     ${folds_setting} \
     ${output_path} \
     ${log_path}
 
 
-elif [ ${Software} == *"ResFinder"* ]; then
+elif [[ ${Software} == *"ResFinder"* ]]; then
   source activate ${resfinder_env}
-  echo $CONDA_DEFAULT_ENV
-  echo "!!"
+#  echo $CONDA_DEFAULT_ENV
 
   bash ./AMR_software/ResFinder/predictor_res.sh \
-      ${species} \
-      ${samplePath} \
-      ${SampleName} \
+      ${species_each} \
+      ${SamplePath_each} \
+      ${SampleName_each} \
       ${output_path} \
       ${log_path}
 
 else
    echo "Please check if you have entered the correct software name in the list."
 fi
+}
 
 
+
+
+
+
+###   Read in SamplePath and SampleName.
+if [ ${batch} == "True" ]; then
+  ###define sample information based on sample.txt, and process sample parallel
+  allSampleNames=()
+  allSamplePaths=()
+  allSampleSpecies=()
+  while IFS=" " read -r  name pa sp
+  do
+#     echo "Record is : $line"
+     allSampleNames+=( $name )
+     allSamplePaths+=( $pa )
+     allSampleSpecies+=( $sp )
+  done < ${batch_file}
+
+
+for i in  "${!allSampleNames[@]}"; do
+#  (
+SampleName_each="${allSampleNames[i]}"
+SamplePath_each="${allSamplePaths[i]}"
+species_each="${allSampleSpecies[i]}"
+predict ${species_each}  ${SamplePath_each} ${SampleName_each}
+echo "***"
+#  )&
+done
+
+
+else
+  SampleName_each="${SampleName}"
+  SamplePath_each="${SamplePath}"
+  species_each="${species}"
+  predict ${species} ${SamplePath} ${SampleName}
+
+
+fi
 
 
 
@@ -78,6 +120,6 @@ fi
 ## specific targeted species-drug, then we used the methods by order of Point-/ResFinder, Kover, PhenotypeSeeker.
 ## P. aeruginosa-MEM, and A. baumannii-SXT are predicted by the second best method as Seq2Geno2Pheno and Aytan-Aktug is not yet available.
 ## 3. ensemble voting
-## todo: change SampleName,samplePath, species to text input.
+
 
 
