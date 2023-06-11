@@ -56,10 +56,10 @@ bash install/install.sh
  Example:
   ```
  <path_to_results>/results
-├── sample1_Escherichia_coli
-│   └── resfinder_result.txt
-└── sample2_Escherichia_coli
-    └── resfinder_result.txt
+├── sample1
+│   └── Escherichia_coli_resfinder_result.txt
+└── sample2
+    └── Escherichia_coli_resfinder_result.txt
 
   ```
   
