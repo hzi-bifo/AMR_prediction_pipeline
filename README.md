@@ -17,9 +17,12 @@ An integrated tool for AMR phenotype prediction, based on  [PhenotypeSeeker 0.7.
 ## <a name="input"></a>Input file
 The input file is a yaml file `Config.yaml` at the root folder where all options are described:
 
-**A. Basic/required parameters setting**
-
-- Please change everything in A after the ":" to your own.
+**A. Sample information
+  Please specify samples' information in sample.txt, where each row containing a strain's sample name, path to genome, and strain species, respectively separated by a space.
+  
+  
+**B. Basic/required parameters setting**
+ 
 
 | option | action | values ([default])|
 | ------------- | ------------- |------------- |
@@ -29,9 +32,7 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 |folds_setting|Phylogeny background.Can be one of: close, low_similarity, distant_phylo||
 |Software| Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, ResFinder||
 
-**B.Optional parameters setting**
-
-- Please change the conda environment names if the same names already exist in your working PC.
+ 
 
 
 
