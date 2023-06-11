@@ -19,7 +19,7 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 
 **A. Sample information**
   
-  Please specify samples' information in <a href="https://github.com/hzi-bifo/AMR_prediction_pipeline/blob/main/sample.txt"> sample.txt<a> , where each row containing a strain's sample name, path to genome, and strain species, respectively separated by a space.
+  Please specify samples' information in <a href="https://github.com/hzi-bifo/AMR_prediction_pipeline/blob/main/sample.txt"> sample.txt<a> , where each row contains a strain's sample name, path to genome, and strain species, respectively separated by a space.
   
   
 **B. Parameters setting**
