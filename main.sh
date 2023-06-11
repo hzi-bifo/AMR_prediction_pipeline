@@ -21,30 +21,58 @@ eval $(parse_yaml Config.yaml)
 export PATH=$( dirname $( dirname $( /usr/bin/which conda ) ) )/bin:$PATH
 export PYTHONPATH=$PWD
 
+export AMR_HOME=$( dirname $( realpath ${BASH_SOURCE[0]} ) )
+export PATH=$AMR_HOME:$AMR_HOME/main:$PATH
+echo 'AMR_HOME is '$AMR_HOME
 
 # Define the log file path
 LOG_FILE="${log_path}snakemake.log"
 
 
-
+echo $( dirname $( dirname $( /usr/bin/which conda ) ) )
 echo "Software: ${Software} "
+source activate ${main_env}
 
-
+if [[ ${dryrun} == "Y" ]]; then
+########################################################################################################################
 if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
-snakemake --cores ${n_job} -s ./snakemake/phenotypeseeker.smk  --log "$LOG_FILE" 2>&1 | tee -a "$LOG_FILE"
+snakemake --cores ${n_jobs} -s ./workflow/phenotypeseeker.smk  --directory $AMR_HOME --use-conda --dry-run
 
 elif [[ ${Software} == *"Kover"* ]]; then
-snakemake --cores ${n_job} -s ./snakemake/kover.smk  --log "$LOG_FILE" 2>&1 | tee -a "$LOG_FILE"
+snakemake --cores ${n_jobs} -s ./workflow/kover.smk  --directory $AMR_HOME --use-conda --dry-run
 
 elif [[ ${Software} == *"ResFinder"* ]]; then
-snakemake --cores ${n_job} -s ./snakemake/resfinder.smk  --log "$LOG_FILE" 2>&1 | tee -a "$LOG_FILE"
+snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda --dry-run
+
+
 else
    echo "Please check if you have entered the correct software name in the list."
 fi
+########################################################################################################################
 
 
+else
+########################################################################################################################
+  if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
+snakemake --cores ${n_jobs} -s ./workflow/phenotypeseeker.smk  --directory $AMR_HOME --use-conda
+
+elif [[ ${Software} == *"Kover"* ]]; then
+snakemake --cores ${n_jobs} -s ./workflow/kover.smk  --directory $AMR_HOME --use-conda
+
+elif [[ ${Software} == *"ResFinder"* ]]; then
+snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda
+else
+   echo "Please check if you have entered the correct software name in the list."
+fi
+########################################################################################################################
+
+fi
 
 
+#todo progress bar
+
+##--conda-prefix=$AMR_HOME/workflow/envs
+##--conda-prefix=$AMR_HOME/workflow/envs --dry-run --conda-base-path=$( dirname $( dirname $( /usr/bin/which conda ) ) )
 
 
 

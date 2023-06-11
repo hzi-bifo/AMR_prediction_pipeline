@@ -20,9 +20,9 @@ function parse_yaml {
 
 eval $(parse_yaml Config.yaml)
 
-export AMR_HOME=$( dirname $( dirname $( realpath ${BASH_SOURCE[0]} ) ) )
-export PATH=$AMR_HOME:$AMR_HOME/main:$PATH
-echo 'AMR_HOME is '$AMR_HOME
+#export AMR_HOME=$( dirname $( dirname $( realpath ${BASH_SOURCE[0]} ) ) )
+#export PATH=$AMR_HOME:$AMR_HOME/main:$PATH
+#echo 'AMR_HOME is '$AMR_HOME
 
 
 
@@ -50,9 +50,9 @@ check_conda_channels ||{ echo "Errors in setting conda channels"; exit; }
 echo "installing..."
 
 conda env create -n ${main_env} -f ./install/snakemake_env.yml || { echo "Errors in downloading the core environment"; exit; }
-conda env create -n ${kover_env_name} -f ./install/amr_env.yml || { echo "Errors in creating Kover envs"; exit; }
-conda env create -n ${resfinder_env} --file=./install/res_env.yml || { echo "Errors in creating ResFinder envs"; exit; }
-conda env create -n ${phenotypeSeeker_env_name} --file=./install/phenotypeSeeker_env.yml || { echo "Errors in creating phenotypeSeeker envs"; exit; }
+#conda env create -n ${kover_env_name} -f ./install/amr_env.yml || { echo "Errors in creating Kover envs"; exit; }
+#conda env create -n ${resfinder_env} --file=./install/res_env.yml || { echo "Errors in creating ResFinder envs"; exit; }
+#conda env create -n ${phenotypeSeeker_env_name} --file=./install/phenotypeseeker_env.yml || { echo "Errors in creating phenotypeSeeker envs"; exit; }
 
 
 

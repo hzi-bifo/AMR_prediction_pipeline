@@ -43,12 +43,15 @@ def GetPhenotype_list(anti_list,path_to_pr,SampleName,output):
 
 
     pheno_table_sub = pheno_table.loc[pheno_table['Antimicrobial'].isin(anti_list), ['Antimicrobial','WGS-predicted phenotype']]
-    pheno_table_sub['phenotype']=pheno_table_sub['WGS-predicted phenotype'].apply(lambda x: 0 if x=='No resistance' else 1)
+    pheno_table_sub['Phenotype']=pheno_table_sub['WGS-predicted phenotype'].apply(lambda x: "S" if x=='No resistance' else "R")
     pheno_table_sub['antibiotic']=pheno_table_sub['Antimicrobial'].apply(lambda x: dic_anti2[x] if x in list(dic_anti2.keys()) else x)
     ###pheno_table_sub.drop(['WGS-predicted phenotype','Antimicrobial'], axis=1,inplace=True)
-    pheno_table_sub = pheno_table_sub[['antibiotic','phenotype']]
+    pheno_table_sub = pheno_table_sub[['antibiotic','Phenotype']]
     pheno_table_sub.to_csv(output+ '_result.txt', sep="\t",index=False)
     return pheno_table_sub
+
+
+
 
 
 if __name__ == '__main__':

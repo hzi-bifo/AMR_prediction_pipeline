@@ -1,6 +1,6 @@
 import pandas as pd
 import argparse,json,pickle
-import numpy as np
+
 
 ''' Use learned model by Kover 2.0 for prediction. 
 Model learned using Kover 2.0 : https://github.com/aldro61/kover [Alexandre Drouin, Gaël Letarte, Frédéric Raymond, Mario Marchand, Jacques Corbeil, and François
@@ -17,11 +17,6 @@ def predictor(SampleName,species,work_path,software_path,f_all,output,f_phylotre
         anti_list=list(dic_cl.keys())
 
     test_file=work_path+"log/software/kover/software_output/K-mer_lists/"+SampleName+".txt"
-
-    ## if using KMC
-    # # kmer_P_df= pd.read_csv(test_file,
-    # #                     names=['combination', 'count'],dtype={'genome_id': object}, sep="\t")
-
     kmer_P_df=  pd.read_csv(test_file,names=['combination', 'count'],dtype={'genome_id': object}, sep=" ")
     kmer_P=kmer_P_df['combination'].to_list()
     pheno_table= pd.DataFrame(index=anti_list,columns=['Phenotype'])
@@ -29,7 +24,7 @@ def predictor(SampleName,species,work_path,software_path,f_all,output,f_phylotre
     for anti in anti_list:
 
         chosen_cl=dic_cl[anti]
-        meta_dir=software_path+'/bin/'+species+'/'+str(anti.translate(str.maketrans({'/': '_', ' ': '_','+': '_'})))+'_temp/'+chosen_cl+'_b'
+        meta_dir=software_path+'/bin/'+species+'/'+str(anti.translate(str.maketrans({'/': '_', ' ': '_','+': '_'})))+'_temp/'+chosen_cl+'_b_0'
         #==============
         #  1
         #==============
@@ -84,9 +79,11 @@ def predictor(SampleName,species,work_path,software_path,f_all,output,f_phylotre
     dic_anti={'amoxicillin_clavulanic_acid':'amoxicillin/clavulanic acid','fusidic_acid':'fusidic acid',\
               'trimethoprim_sulfamethoxazole':'trimethoprim/sulfamethoxazole','piperacillin_tazobactam':'piperacillin/tazobactam',\
               'ampicillin_sulbactam':'ampicillin/sulbactam'}
-    pheno_table['antibiotic']=pheno_table.index.apply(lambda x: dic_anti[x] if x in list(dic_anti.keys()) else x)
-    pheno_table = pheno_table[['antibiotic','phenotype']]
-    print(pheno_table)
+    pheno_table['antibiotic']=pheno_table.index.map(lambda x: dic_anti[x] if x in list(dic_anti.keys()) else x)
+    pheno_table = pheno_table[['antibiotic','Phenotype']]
+    # print(pheno_table)
+    dic_phenotype={0:"S",1:"R"}
+    pheno_table=pheno_table.replace({"Phenotype": dic_phenotype})
     pheno_table.to_csv(output+ '_result.txt', sep="\t",index=False)
     # pheno_table.to_csv(output+ '_result.txt', sep="\t")
 
@@ -108,8 +105,8 @@ if __name__ == '__main__':
                         help='Output of the phenotype table.')
     parser.add_argument('-wd', '--work_path', type=str, required=True,
                         help='Working directory.')
-    parser.add_argument('-sd', '--software_path', type=str,  default='',required=True,
-                        help='Software directory. if not provided, we assume you work in the software directory.')
+    parser.add_argument('-sd', '--software_path', type=str,  default='./AMR_software/Kover',required=True,
+                        help='Software directory.')
     parser.add_argument('-sample', '--SampleName', type=str,
                         help='Sample name.')
     parser.add_argument('-f_all', '--f_all', dest='f_all', action='store_true',

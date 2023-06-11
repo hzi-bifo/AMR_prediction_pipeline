@@ -8,21 +8,26 @@ log_path="$5"
 
 
 readarray -t Anti_List <  ${BASEDIR}/bin/${species}/anti_list
-mkdir -p  ${OutPath}/results/${sampleName}_${species}/resfinder/
+mkdir -p  ${OutPath}results/${sampleName}/
 mkdir -p  ${log_path}log/software/resfinder/software_output/${sampleName}
+#
+##if [[ -d ${OutPath}/results/${sampleName}_${species} ]] || [[ -d ${log_path}log/software/resfinder/software_output/${sampleName} ]]
+##then
+##    DATE=$(date +%F)
+##    new_sampleName=${sampleName}_${DATE}
+##    echo "${sampleName} exists on your filesystem. We renamed your sample as ${new_sampleName}"
+##    sampleName=${new_sampleName}
+##fi
 
-#if [[ -d ${OutPath}/results/${sampleName}_${species} ]] || [[ -d ${log_path}log/software/resfinder/software_output/${sampleName} ]]
-#then
-#    DATE=$(date +%F)
-#    new_sampleName=${sampleName}_${DATE}
-#    echo "${sampleName} exists on your filesystem. We renamed your sample as ${new_sampleName}"
-#    sampleName=${new_sampleName}
-#fi
+
 
 
 species_split=(${species//_/ })
 s1=${species_split[0]}
 s2=${species_split[1]}
+
+#echo "????${sampleName}"
+#touch ${OutPath}results/${sampleName}/${species}_resfinder_result.txt
 
 python3 ${BASEDIR}/run_resfinder.py \
 -ifa ${samplePath} \
@@ -34,6 +39,6 @@ python3 ${BASEDIR}/run_resfinder.py \
 
 echo "Point-/ResFinder finished. Now extract results..."
 
-python ${BASEDIR}/resfinder_output.py  -f_all -sample ${sampleName} -wd ${log_path} -o ${OutPath}/results/${sampleName}_${species} \
+python ${BASEDIR}/resfinder_output.py  -f_all -sample ${sampleName} -wd ${log_path} -o ${OutPath}results/${sampleName}/${species}_resfinder \
 -anti ${Anti_List[@]}
 

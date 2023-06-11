@@ -10,7 +10,7 @@ import argparse
 
 def get_ML_dataframe_testset(species,anti,sampleName,wd):
 
-    meta_temp_f= './AMR_software/PhenotypeSeeker/bin/'+ str(species.replace(" ", "_"))  + '/' +  str(anti.translate(str.maketrans({'/': '_', ' ': '_'})))
+    meta_temp_f= './AMR_software/PhenotypeSeeker/bin/feature/'+ str(species.replace(" ", "_"))  + '/' +  str(anti.translate(str.maketrans({'/': '_', ' ': '_'})))
     meta_temp= wd+'/log/software/phenotypeseeker/software_output/'+ str(species.replace(" ", "_"))  + '/' +  \
                str(anti.translate(str.maketrans({'/': '_', ' ': '_'}))) +'_temp/'+str(sampleName)
 

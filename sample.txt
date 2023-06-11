@@ -1,2 +1,2 @@
-sample_txt1 ./examples/562.22542.fna Escherichia_coli
-sample_txt2 ./examples/562.22780.fna Escherichia_coli
+sample_txt1 examples/562.22542.fna Escherichia_coli
+sample_txt2 examples/562.22780.fna Escherichia_coli

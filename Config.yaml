@@ -1,7 +1,7 @@
 
 
 
-###21.
+###1.
 dryrun: N
 ###2. The path to store the direct results.
 output_path: ./
@@ -10,7 +10,7 @@ output_path: ./
 #log_path: /home/khu/Desktop/project_2/AMR_codes/pipeline_model/trained/
 log_path: ./
 ###4 . max cpu
-n_jobs: 1
+n_jobs: 5
 
 ####5. Sample  information. If batch is set as True, then will read sample information from sample.txt
 #batch: False
@@ -35,7 +35,7 @@ Software: ResFinder
 ############################################################################################################################
 #B. Env: Optional parameters setting
 ############################################################################################################################
-main_env: snakemakeEnv
+main_env: snakemake_env
 kover_env_name: kover_pipe
 phenotypeSeeker_env_name: PhenotypeSeeker_env
 resfinder_env: res_env
