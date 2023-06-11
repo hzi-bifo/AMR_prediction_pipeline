@@ -2,14 +2,14 @@ import yaml,os
 
 SAMPLE_INFO_FILE = "sample.txt"
 CONFIG_FILE= "Config.yaml"
-
+CONDA_FILE="envs/phenotypeseeker_env.yml"
 
 def read_output_path():
     with open(CONFIG_FILE, "r") as file:
         config = yaml.safe_load(file)
-        return config["output_path"],config["log_path"], config["resfinder_env"], config["folds_setting"]
+        return config["output_path"],config["log_path"],config["folds_setting"]
 
-OUTPUT_PATH, LOG_PATH,resfinder_ENV,FOLDS= read_output_path()
+OUTPUT_PATH, LOG_PATH,FOLDS= read_output_path()
 if OUTPUT_PATH=='./':
     OUTPUT_PATH=os.getcwd()+'/'
 if LOG_PATH=='./':
@@ -52,17 +52,17 @@ rule process_sample:
     output:
         output_file="{output_path}results/{sample_name}/{species}_phenotypeseeker_{folds_setting}_result.txt"
     conda:
-        'env/phenotypeseeker_env.yml'
+        CONDA_FILE
     shell:
         '''
         set +eu
         # source activate {params.para_6}    
-        echo $CONDA_DEFAULT_ENV
+        
         mkdir -p {params.para_5}log/software/phenotypeseeker/software_output/{params.input_file3}/
         bash ./AMR_software/PhenotypeSeeker/predictor_pts.sh\
       {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_4} {params.para_5} >  \
        {params.para_5}log/software/phenotypeseeker/software_output/{params.input_file3}/log_{params.para_7}
-      # conda deactivate
+      
       
         '''
 

@@ -11,9 +11,9 @@ CONDA_FILE="envs/res_env.yml"
 def read_output_path():
     with open(CONFIG_FILE, "r") as file:
         config = yaml.safe_load(file)
-        return config["output_path"],config["log_path"], config["resfinder_env"]
+        return config["output_path"],config["log_path"]
 
-OUTPUT_PATH, LOG_PATH,resfinder_ENV= read_output_path()
+OUTPUT_PATH, LOG_PATH= read_output_path()
 if OUTPUT_PATH=='./':
     OUTPUT_PATH=os.getcwd()+'/'
 if LOG_PATH=='./':
@@ -55,7 +55,6 @@ rule process_sample:
         output_file="{output_path}results/{sample_name}/{species}_resfinder_result.txt"
     conda:
         CONDA_FILE
-        # '/home/khu/miniconda2/envs/res_env'
     shell:
         '''
         set +eu
