@@ -22,95 +22,29 @@ export PATH=$( dirname $( dirname $( /usr/bin/which conda ) ) )/bin:$PATH
 export PYTHONPATH=$PWD
 
 
+# Define the log file path
+LOG_FILE="${log_path}snakemake.log"
 
 
 
-predict() {
-
-echo "Sample name: ${SampleName_each}"
 echo "Software: ${Software} "
 
 
 if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
-  source activate ${phenotypeSeeker_env_name}
+snakemake --cores ${n_job} -s ./snakemake/phenotypeseeker.smk  --log "$LOG_FILE" 2>&1 | tee -a "$LOG_FILE"
 
-   bash ./AMR_software/PhenotypeSeeker/predictor_pts.sh \
-   ${species_each} \
-   ${SamplePath_each} \
-   ${SampleName_each} \
-   ${folds_setting} \
-   ${output_path} \
-   ${log_path}
-
-
-#todo, still need to change dsk location in bash file! seems finished.
-# output:
 elif [[ ${Software} == *"Kover"* ]]; then
-  source activate ${kover_env_name}
-  bash ./AMR_software/Kover/predictor_kover.sh \
-    ${species_each} \
-    ${SamplePath_each} \
-    ${SampleName_each} \
-    ${folds_setting} \
-    ${output_path} \
-    ${log_path}
-
+snakemake --cores ${n_job} -s ./snakemake/kover.smk  --log "$LOG_FILE" 2>&1 | tee -a "$LOG_FILE"
 
 elif [[ ${Software} == *"ResFinder"* ]]; then
-  source activate ${resfinder_env}
-#  echo $CONDA_DEFAULT_ENV
-
-  bash ./AMR_software/ResFinder/predictor_res.sh \
-      ${species_each} \
-      ${SamplePath_each} \
-      ${SampleName_each} \
-      ${output_path} \
-      ${log_path}
-
+snakemake --cores ${n_job} -s ./snakemake/resfinder.smk  --log "$LOG_FILE" 2>&1 | tee -a "$LOG_FILE"
 else
    echo "Please check if you have entered the correct software name in the list."
 fi
-}
 
 
 
 
-
-
-###   Read in SamplePath and SampleName.
-if [ ${batch} == "True" ]; then
-  ###define sample information based on sample.txt, and process sample parallel
-  allSampleNames=()
-  allSamplePaths=()
-  allSampleSpecies=()
-  while IFS=" " read -r  name pa sp
-  do
-#     echo "Record is : $line"
-     allSampleNames+=( $name )
-     allSamplePaths+=( $pa )
-     allSampleSpecies+=( $sp )
-  done < ${batch_file}
-
-
-for i in  "${!allSampleNames[@]}"; do
-#  (
-SampleName_each="${allSampleNames[i]}"
-SamplePath_each="${allSamplePaths[i]}"
-species_each="${allSampleSpecies[i]}"
-predict ${species_each}  ${SamplePath_each} ${SampleName_each}
-echo "***"
-#  )&
-done
-
-
-else
-  SampleName_each="${SampleName}"
-  SamplePath_each="${SamplePath}"
-  species_each="${species}"
-  predict ${species} ${SamplePath} ${SampleName}
-
-
-fi
 
 
 
