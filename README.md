@@ -27,6 +27,7 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 
 | option | action | values ([default])|
 | ------------- | ------------- |------------- |
+|dryrun| Y or N |Y|
 |output_path| To where to generate the `Results` folder for the direct results of each software and further visualization. | ./|
 |log_path| To where to generate the `log` folder for the intermediate files, which you can delete by hand afterward.| ./|
 |n_jobs| CPU cores to use.| 1 |
