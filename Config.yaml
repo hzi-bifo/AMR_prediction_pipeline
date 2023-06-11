@@ -5,19 +5,21 @@
 dryrun: N
 ###2. The path to store the direct results.
 output_path: ./
+#output_path: /home/khu/Desktop/project_2/AMR_codes/pipeline_model/trained/
 ###3. The path to store the temporary files
+#log_path: /home/khu/Desktop/project_2/AMR_codes/pipeline_model/trained/
 log_path: ./
 ###4 . max cpu
-n_jobs: 5
+n_jobs: 1
 
 ####5. Sample  information. If batch is set as True, then will read sample information from sample.txt
-batch: False
-batch_file: sample.txt
-SampleName: sample1
-### Sample to be tested. each genome should be stored in one fna file.
-SamplePath: example/562.22542.fna
-### Species
-species: Escherichia_coli
+#batch: False
+#batch_file: sample.txt
+#SampleName: sample1
+#### Sample to be tested. each genome should be stored in one fna file.
+#SamplePath: examples/562.22542.fna
+#### Species
+#species: Escherichia_coli
 
 
 
@@ -27,12 +29,13 @@ species: Escherichia_coli
 folds_setting: close
 
 ### 7. Software. Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, ResFinder
-Software: Kover
+Software: ResFinder
 
 
 ############################################################################################################################
 #B. Env: Optional parameters setting
 ############################################################################################################################
+main_env: snakemakeEnv
 kover_env_name: kover_pipe
 phenotypeSeeker_env_name: PhenotypeSeeker_env
 resfinder_env: res_env

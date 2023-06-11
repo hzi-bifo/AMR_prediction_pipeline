@@ -1,10 +1,8 @@
-name: PhenotypeSeeker_env
+name: phenotypeseeker_env
 channels:
-  - r
   - anaconda
   - pytorch
   - conda-forge/label/broken
-  - hzi-bifo
   - bioconda
   - conda-forge
   - defaults
@@ -18,4 +16,4 @@ dependencies:
   - pip:
     - scikit-learn==0.24.1
     - scipy==1.4.1
-prefix: /home/khu/miniconda2/envs/PhenotypeSeeker_env
+

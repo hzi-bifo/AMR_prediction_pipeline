@@ -7,9 +7,14 @@ channels:
   - defaults
   - conda-forge/label/broken
 dependencies:
-  - numpy=1.22.3
-  - pandas=1.4.3
-  - python=3.8
+#  - numpy=1.22.3
+#  - pandas=1.4.3
+  - python=3.9 #todo. at home 3.8
   - snakemake=6.4.1
-  - tqdm=4.61.1
-  - psutil=5.8.0 #todo check
+#  - tqdm=4.61.1
+#  - psutil=5.8.0 #todo check
+
+
+
+#conda install -c bioconda snakemake
+#conda install -c conda-forge tqdm
