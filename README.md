@@ -45,6 +45,12 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 bash install/install.sh 
 ```
 
+ ## Usage
+  
+ ```
+ bash main.sh 
+ ```
+  
 
  ## Output
   
