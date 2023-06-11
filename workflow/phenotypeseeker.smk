@@ -47,7 +47,6 @@ rule process_sample:
         input_file3=lambda wildcards: wildcards.sample_name,
         para_4=OUTPUT_PATH,
         para_5=LOG_PATH,
-        para_6=resfinder_ENV,
         para_7=FOLDS
     output:
         output_file="{output_path}results/{sample_name}/{species}_phenotypeseeker_{folds_setting}_result.txt"
@@ -56,7 +55,6 @@ rule process_sample:
     shell:
         '''
         set +eu
-        # source activate {params.para_6}    
         
         mkdir -p {params.para_5}log/software/phenotypeseeker/software_output/{params.input_file3}/
         bash ./AMR_software/PhenotypeSeeker/predictor_pts.sh\
