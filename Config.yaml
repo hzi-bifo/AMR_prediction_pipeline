@@ -36,8 +36,8 @@ Software: ResFinder
 #B. Env: Optional parameters setting
 ############################################################################################################################
 main_env: snakemake_env
-kover_env_name: kover_pipe
-phenotypeSeeker_env_name: PhenotypeSeeker_env
-resfinder_env: res_env
-main_env_name: snakemake
+#kover_env_name: kover_pipe
+#phenotypeSeeker_env_name: PhenotypeSeeker_env
+#resfinder_env: res_env
+#main_env_name: snakemake
 
