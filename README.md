@@ -22,7 +22,7 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
   Please specify samples' information in sample.txt, where each row containing a strain's sample name, path to genome, and strain species, respectively separated by a space.
   
   
-**B. Basic/required parameters setting**
+**B. Parameters setting**
  
 
 | option | action | values ([default])|
