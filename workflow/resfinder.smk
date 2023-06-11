@@ -59,13 +59,13 @@ rule process_sample:
     shell:
         '''
         set +eu
-        ### source activate {params.para_6}    
+        
         echo $CONDA_DEFAULT_ENV
         mkdir -p  {params.para_5}log/software/resfinder/software_output/{params.input_file3}/        
         bash ./AMR_software/ResFinder/predictor_res.sh \
       {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_4} {params.para_5} \
       > {params.para_5}log/software/resfinder/software_output/{params.input_file3}/log
-      ### conda deactivate      
+          
         '''
 
 
