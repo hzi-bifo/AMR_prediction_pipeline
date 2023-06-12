@@ -20,9 +20,9 @@ function parse_yaml {
 
 eval $(parse_yaml Config.yaml)
 
-#export AMR_HOME=$( dirname $( dirname $( realpath ${BASH_SOURCE[0]} ) ) )
-#export PATH=$AMR_HOME:$AMR_HOME/main:$PATH
-#echo 'AMR_HOME is '$AMR_HOME
+export AMR_HOME=$( dirname $( dirname $( realpath ${BASH_SOURCE[0]} ) ) )
+export PATH=$AMR_HOME:$AMR_HOME/main:$PATH
+echo 'AMR_HOME is '$AMR_HOME
 
 
 
@@ -50,11 +50,6 @@ check_conda_channels ||{ echo "Errors in setting conda channels"; exit; }
 echo "installing..."
 
 conda env create -n ${main_env} -f ./install/snakemake_env.yml || { echo "Errors in downloading the core environment"; exit; }
-#conda env create -n ${kover_env_name} -f ./install/amr_env.yml || { echo "Errors in creating Kover envs"; exit; }
-#conda env create -n ${resfinder_env} --file=./install/res_env.yml || { echo "Errors in creating ResFinder envs"; exit; }
-#conda env create -n ${phenotypeSeeker_env_name} --file=./install/phenotypeseeker_env.yml || { echo "Errors in creating phenotypeSeeker envs"; exit; }
-
-
 
 
 
@@ -66,25 +61,24 @@ conda env create -n ${main_env} -f ./install/snakemake_env.yml || { echo "Errors
 ### Requirements
 ### CMake 3.1+; see http://www.cmake.org/cmake/resources/software.html#
 #### C++/11 capable compiler (e.g. gcc 4.7+, clang 3.5+, Apple/clang 6.0+).
-#echo ${kover_env_name}
-##source activate ${kover_env_name}
-#echo $CONDA_DEFAULT_ENV
-#cd ./AMR_software/Kover/dsk
-#sh INSTALL
+
+
+cd ./AMR_software/Kover/dsk
+sh INSTALL
 #
 ####testing
-#echo "testing dsk ..."
-#cd ${AMR_HOME}
-#cd ./AMR_software/Kover/dsk/scripts  # we suppose you are in the build directory
-#./simple_test.sh
-#echo "dsk installed."
+echo "testing dsk ..."
+cd ${AMR_HOME}
+cd ./AMR_software/Kover/dsk/scripts  # we suppose you are in the build directory
+./simple_test.sh
+echo "dsk installed."
 #
-#cd ${AMR_HOME}
+cd ${AMR_HOME}
 
 ########################################################################################################
 ## 3. unzip examples and trained  models.
-#unzip examples.zip -d .
-#unzip ./AMR_software/Kover/bin.zip -d ./AMR_software/Kover/
-# cd ./AMR_prediction_pipeline/AMR_software/PhenotypeSeeker/bin/feature
-# for i in */*; do zip -rm "${i%}.zip" "$i"; done
-#cd ${AMR_HOME}
+unzip examples.zip -d .
+unzip ./AMR_software/Kover/bin.zip -d ./AMR_software/Kover/
+cd ./AMR_prediction_pipeline/AMR_software/PhenotypeSeeker/bin/feature
+for i in */*; do zip -rm "${i%}.zip" "$i"; done
+cd ${AMR_HOME}
