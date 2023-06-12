@@ -8,7 +8,7 @@ output_path="$5"
 log_path="$6"
 
 
-## conda env: PhenotypeSeeker_env_name
+
 
 if [ ${folds_setting}="close" ]; then
     folds_file="random"

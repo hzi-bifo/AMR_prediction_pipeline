@@ -58,8 +58,8 @@ rule process_sample:
         
         mkdir -p {params.para_5}log/software/phenotypeseeker/software_output/{params.input_file3}/
         bash ./AMR_software/PhenotypeSeeker/predictor_pts.sh\
-      {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_4} {params.para_5} >  \
-       {params.para_5}log/software/phenotypeseeker/software_output/{params.input_file3}/log_{params.para_7}
+      {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_7}  {params.para_4} {params.para_5}\
+      # >  {params.para_5}log/software/phenotypeseeker/software_output/{params.input_file3}/log_{params.para_7}
       
       
         '''

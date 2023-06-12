@@ -47,7 +47,6 @@ rule process_sample:
         input_file3=lambda wildcards: wildcards.sample_name,
         para_4=OUTPUT_PATH,
         para_5=LOG_PATH,
-
         para_7=FOLDS
     output:
         output_file="{output_path}results/{sample_name}/{species}_kover_{folds_setting}_result.txt"
@@ -60,7 +59,7 @@ rule process_sample:
         echo $CONDA_DEFAULT_ENV        
         mkdir -p {params.para_5}log/software/kover/software_output/{params.input_file3}/
         bash ./AMR_software/Kover/predictor_kover.sh\
-      {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_4} {params.para_5} >  \
+      {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_7} {params.para_4} {params.para_5} >  \
        {params.para_5}log/software/kover/software_output/{params.input_file3}/log_{params.para_7}
       
       

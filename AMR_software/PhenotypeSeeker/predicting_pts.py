@@ -14,7 +14,7 @@ def GetPheno( species, f_all, anti_list,sampleName,output,wd,f_phylotree,f_kma):
 
     for anti in anti_list:
 
-        feature_path=wd+'/log/software/phenotypeseeker/software_output/'+ str(species.replace(" ", "_"))  + '/' +  \
+        feature_path=wd+'log/software/phenotypeseeker/software_output/'+ str(species.replace(" ", "_"))  + '/' +  \
                      str(anti.translate(str.maketrans({'/': '_', ' ': '_'}))) +'_temp/'+str(sampleName)+'_Test_df.csv'
         feature=pd.read_csv(feature_path,dtype={sampleName: object}, sep=",")
         X=feature.iloc[0].to_list()
