@@ -45,10 +45,7 @@ def GetPheno( species, f_all, anti_list,sampleName,output,wd,f_phylotree,f_kma):
     pheno_table = pheno_table[['antibiotic','Phenotype']]
     dic_phenotype={0:"S",1:"R"}
     pheno_table=pheno_table.replace({"Phenotype": dic_phenotype})
-
-    print(pheno_table)
     pheno_table.to_csv(output+ '_result.txt', sep="\t",index=False)
-    ## pheno_table.to_csv(output+ '_result.txt', sep="\t")
     return pheno_table
 
 if __name__ == '__main__':
