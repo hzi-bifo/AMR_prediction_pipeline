@@ -39,9 +39,7 @@ rule all:
 
 rule process_sample:
     input:
-        ### input_file1=lambda wildcards: wildcards.species,
         input_file2=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
-        ### input_file3=lambda wildcards: wildcards.sample_name
     params:
         input_file1=lambda wildcards: wildcards.species,
         input_file3=lambda wildcards: wildcards.sample_name,

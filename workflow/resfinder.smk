@@ -4,8 +4,7 @@ import yaml,os
 SAMPLE_INFO_FILE = "sample.txt"
 CONFIG_FILE= "Config.yaml"
 CONDA_FILE="envs/res_env.yml"
-# # CONDA_FILE="/net/sgi/metagenomics/data/khu/benchmarking/amr_pipeline/trained/workflow/envs/res_env.yml"
-# # CONDA_FILE="res_env"
+
 
 
 def read_output_path():
@@ -42,17 +41,13 @@ rule all:
 
 rule process_sample:
     input:
-        ### input_file1=lambda wildcards: wildcards.species,
-        input_file2=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
-        ### input_file3=lambda wildcards: wildcards.sample_name
+        input_path=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
     params:
-        input_file1=lambda wildcards: wildcards.species,
-        input_file3=lambda wildcards: wildcards.sample_name,
-        para_4=OUTPUT_PATH,
-        para_5=LOG_PATH,
-        # para_6=resfinder_ENV
+        input_species=lambda wildcards: wildcards.species,
+        input_name=lambda wildcards: wildcards.sample_name,
+        para_log=LOG_PATH,
     output:
-        output_file="{output_path}results/{sample_name}/{species}_resfinder_result.txt"
+        output_file="{log_path}log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt"
     conda:
         CONDA_FILE
     shell:
@@ -60,21 +55,30 @@ rule process_sample:
         set +eu
         
         echo $CONDA_DEFAULT_ENV
-        mkdir -p  {params.para_5}log/software/resfinder/software_output/{params.input_file3}/        
-        bash ./AMR_software/ResFinder/predictor_res.sh \
-      {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_4} {params.para_5} \
-      > {params.para_5}log/software/resfinder/software_output/{params.input_file3}/log
-          
+        mkdir -p  {params.para_log}log/software/resfinder/software_output/{params.input_name}/{params.input_species}    
+        bash ./AMR_software/ResFinder/run_res.sh \
+      {params.input_species}  {input.input_path} {params.input_name} {params.para_log} \
+      > {params.para_log}log/software/resfinder/software_output/{params.input_name}/{params.input_species}/log
+        echo "Point-/ResFinder finished. Now extract results..."
         '''
 
+rule generate_file:
+    input:
+        input_file0=LOG_PATH+"log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt"
+    params:
+        input_species=lambda wildcards: wildcards.species,
+        input_name=lambda wildcards: wildcards.sample_name,
+        para_out=OUTPUT_PATH,
+        para_log=LOG_PATH,
+    output:
+        output_file="{output_path}results/{sample_name}/{species}_resfinder_result.txt"
+    conda:
+        CONDA_FILE
+    shell:
+        '''
+        set +eu
+        bash ./AMR_software/ResFinder/predictor_res.sh \
+      {params.input_species} {params.input_name} {params.para_out} {params.para_log}           
+        '''
 
-
-
-        # input_file1=expand("{species}",species=[info[2] for info in SAMPLE_INFO]),
-        # input_file2=expand("{input_file}",input_file=[info[1] for info in SAMPLE_INFO]),
-        # input_file3=expand("{sample_name}",sample_name=[info[0] for info in SAMPLE_INFO]),
-        # input_file4=OUTPUT_PATH,
-        # input_file5=LOG_PATH
-    # input_file1=lambda wildcards: wildcards.species,
-#         input_file3=lambda wildcards: wildcards.sample_name
 
