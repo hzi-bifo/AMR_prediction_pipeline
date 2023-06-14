@@ -32,40 +32,39 @@ echo 'AMR_HOME is '$AMR_HOME
 source activate ${main_env}
 
 if [[ ${dryrun} == "Y" ]]; then
-########################################################################################################################
-if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
-snakemake --cores ${n_jobs} -s ./workflow/phenotypeseeker.smk  --directory $AMR_HOME --use-conda --dry-run
-fi
+      ########################################################################################################################
+      if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
+      snakemake --cores ${n_jobs} -s ./workflow/phenotypeseeker.smk  --directory $AMR_HOME --use-conda --dry-run
+      fi
 
-if [[ ${Software} == *"Kover"* ]]; then
-snakemake --cores ${n_jobs} -s ./workflow/kover.smk  --directory $AMR_HOME --use-conda --dry-run
-fi
+      if [[ ${Software} == *"Kover"* ]]; then
+      snakemake --cores ${n_jobs} -s ./workflow/kover.smk  --directory $AMR_HOME --use-conda --dry-run
+      fi
 
-if [[ ${Software} == *"ResFinder"* ]]; then
-snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda --dry-run
-fi
+      if [[ ${Software} == *"ResFinder"* ]]; then
+      snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda --dry-run
+      fi
 
-
-########################################################################################################################
+      ########################################################################################################################
 
 
 else
-########################################################################################################################
-  if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
-    echo "Software: PhenotypeSeeker "
-snakemake --cores ${n_jobs} -s ./workflow/phenotypeseeker.smk  --directory $AMR_HOME --use-conda
-fi
+      ########################################################################################################################
+      if [[ ${Software} == *"PhenotypeSeeker"* ]]; then
+          echo "Software: PhenotypeSeeker "
+      snakemake --cores ${n_jobs} -s ./workflow/phenotypeseeker.smk  --directory $AMR_HOME --use-conda
+      fi
 
-if [[ ${Software} == *"Kover"* ]]; then
-  echo "Software: Kover "
-snakemake --cores ${n_jobs} -s ./workflow/kover.smk  --directory $AMR_HOME --use-conda
-fi
+      if [[ ${Software} == *"Kover"* ]]; then
+        echo "Software: Kover "
+      snakemake --cores ${n_jobs} -s ./workflow/kover.smk  --directory $AMR_HOME --use-conda
+      fi
 
-if [[ ${Software} == *"ResFinder"* ]]; then
-  echo "Software: ResFinder "
-snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda
-fi
-########################################################################################################################
+      if [[ ${Software} == *"ResFinder"* ]]; then
+        echo "Software: ResFinder "
+      snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda
+      fi
+      ########################################################################################################################
 
 fi
 

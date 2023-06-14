@@ -1,9 +1,9 @@
 ###1.
 dryrun: N
-###2. The path to store the direct results. Please finish with the "/"
+###2. The path to store the direct results. Please finish with the "/". Can replace the following with a absolute path.
 output_path: ./
 #output_path: /home/khu/Desktop/project_2/AMR_codes/pipeline_model/trained/
-###3. The path to store the temporary files
+###3. The path to store the temporary files. Please finish with the "/". Can replace the following with a absolute path.
 #log_path: /home/khu/Desktop/project_2/AMR_codes/pipeline_model/trained/
 log_path: ./
 ###4 . max cpu
@@ -15,7 +15,7 @@ n_jobs: 2
 folds_setting: close
 
 ### 6. Software. Can be one or multiple (separated by ",") of: PhenotypeSeeker, Kover, ResFinder
-Software: Kover
+Software: Kover, ResFinder
 
 ###7. Env:
 main_env: snakemake_env
