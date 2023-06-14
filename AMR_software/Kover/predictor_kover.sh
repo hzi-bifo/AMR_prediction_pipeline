@@ -27,7 +27,7 @@ ${BASEDIR}/dsk/build/bin/dsk2ascii -file  ${log_path}log/software/kover/software
 -out  ${log_path}log/software/kover/software_output/${sampleName}/${species}/kmer.txt
 
 
-
+### 2) predict
 
 
 if [ ${folds_setting} == "close" ]; then

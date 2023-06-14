@@ -37,26 +37,6 @@ rule all:
             output_path=OUTPUT_PATH,sample_name=[info[0] for info in SAMPLE_INFO],\
         species=[info[2] for info in SAMPLE_INFO])
 
-# rule feature_kmer:
-#     input:
-#         input_path=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
-#     params:
-#         input_species=lambda wildcards: wildcards.species,
-#         input_name=lambda wildcards: wildcards.sample_name,
-#         para_out=OUTPUT_PATH,
-#         para_log=LOG_PATH,
-#
-#     output:
-#         output_file=LOG_PATH+"log/software/kover/software_output/{sample_name}/{species}/kmer.txt"
-#     conda:
-#         CONDA_FILE
-#     shell:
-#         '''
-#         set +eu
-#         bash ./AMR_software/Kover/feature_kover.sh\
-#       {params.input_species} {input.input_path} {params.input_name}{params.para_out} {params.para_log}
-#
-#         '''
 
 rule predict:
     input:
