@@ -64,7 +64,7 @@ rule process_sample:
 
 rule generate_file:
     input:
-        input_file0=LOG_PATH+"log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt"
+        input_table=LOG_PATH+"log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt"
     params:
         input_species=lambda wildcards: wildcards.species,
         input_name=lambda wildcards: wildcards.sample_name,
@@ -78,7 +78,7 @@ rule generate_file:
         '''
         set +eu
         bash ./AMR_software/ResFinder/predictor_res.sh \
-      {params.input_species} {params.input_name} {params.para_out} {params.para_log}           
+      {input.input_table} {params.input_species} {params.input_name} {params.para_out} {params.para_log}           
         '''
 
 
