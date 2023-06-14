@@ -11,16 +11,15 @@ import argparse
 def get_ML_dataframe_testset(species,anti,sampleName,wd):
 
     meta_temp_f= './AMR_software/PhenotypeSeeker/bin/feature/'+ str(species.replace(" ", "_"))  + '/' +  str(anti.translate(str.maketrans({'/': '_', ' ': '_'})))
-    meta_temp= wd+'log/software/phenotypeseeker/software_output/'+ str(species.replace(" ", "_"))  + '/' +  \
-               str(anti.translate(str.maketrans({'/': '_', ' ': '_'}))) +'_temp/'+str(sampleName)
+
+    meta_temp= wd+'log/software/phenotypeseeker/software_output/'+ sampleName+'/'+str(species.replace(" ", "_"))  + '/' +  \
+               str(anti.translate(str.maketrans({'/': '_', ' ': '_'})))
 
     vocab=np.load(meta_temp_f+'_vocab.npy',allow_pickle=True)
     data = np.zeros((len(vocab), 1), dtype='uint16')
     feature_matrix = pd.DataFrame(data, index=vocab, columns=['initializer'])  # delete later
     feature_matrix.index.name = 'feature'
-    # print(feature_matrix)
-    # print('-----')
-    f = pd.read_csv(meta_temp+'/mapped',
+    f = pd.read_csv(meta_temp+'_mapped',
                     names=['combination', str(sampleName)], sep="\t")
     f = f.set_index('combination')
     feature_matrix = pd.concat([feature_matrix, f], axis=1, join="inner")
@@ -29,7 +28,6 @@ def get_ML_dataframe_testset(species,anti,sampleName,wd):
     feature_matrix = feature_matrix.T
     feature_matrix.index.name = 'genome_id'
     feature_matrix.to_csv(meta_temp +'_Test_df.csv')
-    # print(feature_matrix)
 
 
 

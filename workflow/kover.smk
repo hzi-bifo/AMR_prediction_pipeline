@@ -37,15 +37,36 @@ rule all:
             output_path=OUTPUT_PATH,sample_name=[info[0] for info in SAMPLE_INFO],\
         species=[info[2] for info in SAMPLE_INFO])
 
-rule process_sample:
+# rule feature_kmer:
+#     input:
+#         input_path=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
+#     params:
+#         input_species=lambda wildcards: wildcards.species,
+#         input_name=lambda wildcards: wildcards.sample_name,
+#         para_out=OUTPUT_PATH,
+#         para_log=LOG_PATH,
+#
+#     output:
+#         output_file=LOG_PATH+"log/software/kover/software_output/{sample_name}/{species}/kmer.txt"
+#     conda:
+#         CONDA_FILE
+#     shell:
+#         '''
+#         set +eu
+#         bash ./AMR_software/Kover/feature_kover.sh\
+#       {params.input_species} {input.input_path} {params.input_name}{params.para_out} {params.para_log}
+#
+#         '''
+
+rule predict:
     input:
-        input_file2=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
+        input_path=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
     params:
-        input_file1=lambda wildcards: wildcards.species,
-        input_file3=lambda wildcards: wildcards.sample_name,
-        para_4=OUTPUT_PATH,
-        para_5=LOG_PATH,
-        para_7=FOLDS
+        input_species=lambda wildcards: wildcards.species,
+        input_name=lambda wildcards: wildcards.sample_name,
+        para_out=OUTPUT_PATH,
+        para_log=LOG_PATH,
+        para_folds=FOLDS
     output:
         output_file="{output_path}results/{sample_name}/{species}_kover_{folds_setting}_result.txt"
     conda:
@@ -53,14 +74,8 @@ rule process_sample:
     shell:
         '''
         set +eu
-        
-        echo $CONDA_DEFAULT_ENV        
-        mkdir -p {params.para_5}log/software/kover/software_output/{params.input_file3}/
         bash ./AMR_software/Kover/predictor_kover.sh\
-      {params.input_file1}  {input.input_file2} {params.input_file3} {params.para_7} {params.para_4} {params.para_5} >  \
-       {params.para_5}log/software/kover/software_output/{params.input_file3}/log_{params.para_7}
-      
+      {params.input_species}  {input.input_path} {params.input_name} {params.para_folds} {params.para_out} {params.para_log} 
       
         '''
-
 

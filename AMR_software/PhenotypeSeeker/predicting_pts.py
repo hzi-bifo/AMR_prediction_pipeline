@@ -14,8 +14,8 @@ def GetPheno( species, f_all, anti_list,sampleName,output,wd,f_phylotree,f_kma):
 
     for anti in anti_list:
 
-        feature_path=wd+'log/software/phenotypeseeker/software_output/'+ str(species.replace(" ", "_"))  + '/' +  \
-                     str(anti.translate(str.maketrans({'/': '_', ' ': '_'}))) +'_temp/'+str(sampleName)+'_Test_df.csv'
+        feature_path=wd+'log/software/phenotypeseeker/software_output/'+str(sampleName)+ '/'+str(species.replace(" ", "_"))  + '/' +  \
+                     str(anti.translate(str.maketrans({'/': '_', ' ': '_'}))) +'_Test_df.csv'
         feature=pd.read_csv(feature_path,dtype={sampleName: object}, sep=",")
         X=feature.iloc[0].to_list()
         X=X[1:]
@@ -46,6 +46,7 @@ def GetPheno( species, f_all, anti_list,sampleName,output,wd,f_phylotree,f_kma):
     dic_phenotype={0:"S",1:"R"}
     pheno_table=pheno_table.replace({"Phenotype": dic_phenotype})
     pheno_table.to_csv(output+ '_result.txt', sep="\t",index=False)
+    ## pheno_table.to_csv(output+ '_result.txt', sep="\t")
     return pheno_table
 
 if __name__ == '__main__':

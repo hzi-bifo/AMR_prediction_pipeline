@@ -47,7 +47,7 @@ rule process_sample:
         input_name=lambda wildcards: wildcards.sample_name,
         para_log=LOG_PATH,
     output:
-        output_file="{log_path}log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt"
+        output_file=LOG_PATH+"log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt"
     conda:
         CONDA_FILE
     shell:

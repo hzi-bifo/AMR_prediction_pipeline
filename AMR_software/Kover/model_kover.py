@@ -10,13 +10,13 @@ One time one sample.
 '''
 
 
-def predictor(SampleName,species,work_path,software_path,f_all,output,f_phylotree,f_kma):
+def predictor(SampleName,species,test_file,work_path,software_path,f_all,output,f_phylotree,f_kma):
     if f_all:
         f = open(software_path+'/bin/'+species+'/Dict_' + str(species.replace(" ", "_"))+ '_kma_' + str(f_kma) + '_tree_' + str(f_phylotree)+'_classifier.json')
         dic_cl=json.load(f)
         anti_list=list(dic_cl.keys())
 
-    test_file=work_path+"log/software/kover/software_output/K-mer_lists/"+SampleName+".txt"
+
     kmer_P_df=  pd.read_csv(test_file,names=['combination', 'count'],dtype={'genome_id': object}, sep=" ")
     kmer_P=kmer_P_df['combination'].to_list()
     pheno_table= pd.DataFrame(index=anti_list,columns=['Phenotype'])
@@ -85,7 +85,6 @@ def predictor(SampleName,species,work_path,software_path,f_all,output,f_phylotre
     dic_phenotype={0:"S",1:"R"}
     pheno_table=pheno_table.replace({"Phenotype": dic_phenotype})
     pheno_table.to_csv(output+ '_result.txt', sep="\t",index=False)
-    # pheno_table.to_csv(output+ '_result.txt', sep="\t")
 
 
 
@@ -105,8 +104,10 @@ if __name__ == '__main__':
                         help='Output of the phenotype table.')
     parser.add_argument('-wd', '--work_path', type=str, required=True,
                         help='Working directory.')
-    parser.add_argument('-sd', '--software_path', type=str,  default='./AMR_software/Kover',required=True,
+    parser.add_argument('-sd', '--software_path', type=str,  default='./AMR_software/Kover',
                         help='Software directory.')
+    parser.add_argument('-test_file', '--test_file', type=str,required=True,
+                        help='Kmer feature file.')
     parser.add_argument('-sample', '--SampleName', type=str,
                         help='Sample name.')
     parser.add_argument('-f_all', '--f_all', dest='f_all', action='store_true',
@@ -116,5 +117,5 @@ if __name__ == '__main__':
     parser.add_argument('-f_kma', '--f_kma', dest='f_kma', action='store_true',
                         help='kma based cv folders.')
     parsedArgs = parser.parse_args()
-    predictor(parsedArgs.SampleName,parsedArgs.species,parsedArgs.work_path,parsedArgs.software_path,parsedArgs.f_all,
+    predictor(parsedArgs.SampleName,parsedArgs.species,parsedArgs.test_file,parsedArgs.work_path,parsedArgs.software_path,parsedArgs.f_all,
               parsedArgs.output,parsedArgs.f_phylotree,parsedArgs.f_kma)

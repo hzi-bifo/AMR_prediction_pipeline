@@ -47,17 +47,16 @@ rule kmer:
     params:
         input_species=lambda wildcards: wildcards.species,
         input_name=lambda wildcards: wildcards.sample_name,
-        para_log=LOG_PATH,
-        para_7=FOLDS
+        para_log=LOG_PATH
     output:
-        output_file="{log_path}log/software/phenotypeseeker/software_output/{sample_name}/{species}/K-mer_lists/kmer_0_13.list"
+        output_file=LOG_PATH+"log/software/phenotypeseeker/software_output/{sample_name}/{species}/K-mer_lists/kmer_0_13.list"
     conda:
         CONDA_FILE
     shell:
         '''
         set +eu
         mkdir -p  {params.para_log}log/software/phenotypeseeker/software_output/{params.input_name}/{params.input_species}/K-mer_lists/
-        glistmaker ${samplePath} -o {params.para_log}log/software/phenotypeseeker/software_output/{params.input_name}/{params.input_species}/K-mer_lists/kmer_0 \
+        glistmaker {input.input_path} -o {params.para_log}log/software/phenotypeseeker/software_output/{params.input_name}/{params.input_species}/K-mer_lists/kmer_0 \
         -w 13 -c 1
         '''
 
@@ -69,29 +68,24 @@ rule feature:
         input_species=lambda wildcards: wildcards.species,
         input_name=lambda wildcards: wildcards.sample_name,
         para_log=LOG_PATH,
-        para_7=FOLDS
+        para_folds=FOLDS
     output:
-        # output_file="{output_path}results/{sample_name}/{species}_phenotypeseeker_{folds_setting}_result.txt"
-        output_file="{log_path}log/software/phenotypeseeker/software_output/{sample_name}/{species}/"++"_Test_df.csv"
+        output_file="{log_path}log/software/phenotypeseeker/software_output/{sample_name}/{species}/check_Test_df.csv"
     conda:
         CONDA_FILE
     shell:
         '''
-        set +eu
-        
+        set +eu        
         mkdir -p {params.para_log}log/software/phenotypeseeker/software_output/{params.input_name}/{params.input_species}
         bash ./AMR_software/PhenotypeSeeker/feature_pts.sh\
-      {params.input_species}  {input.input_path} {params.input_name} {params.para_log}\
-      # >  {params.para_log}log/software/phenotypeseeker/software_output/{params.input_name}/{params.input_species}/log_{params.para_7}
-      
-      
+      {params.input_species} {input.input_kmer} {params.input_name} {params.para_log}\
+      # >  {params.para_log}log/software/phenotypeseeker/software_output/{params.input_name}/{params.input_species}/log_{params.para_folds}
         '''
 
 
 rule predict:
     input:
-        # input_file2=lambda wildcards: SAMPLE_dic[wildcards.sample_name]
-        input_file0=LOG_PATH+"log/software/resfinder/software_output/{sample_name}/{species}/pheno_table.txt" #todo
+        input_file0=LOG_PATH+"log/software/phenotypeseeker/software_output/{sample_name}/{species}/check_Test_df.csv"
     params:
         input_species=lambda wildcards: wildcards.species,
         input_name=lambda wildcards: wildcards.sample_name,
