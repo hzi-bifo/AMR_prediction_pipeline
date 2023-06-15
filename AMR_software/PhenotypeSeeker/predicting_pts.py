@@ -68,7 +68,6 @@ if __name__ == '__main__':
                         help='kma based cv folders.')
     parser.add_argument('-f_all', '--f_all', dest='f_all', action='store_true',
                         help='all the possible antibiotics w.r.t. the species.')
-    parser.add_argument('--n_jobs', default=1, type=int, help='Number of jobs to run in parallel.')
     parsedArgs = parser.parse_args()
     GetPheno(parsedArgs.species,parsedArgs.f_all,parsedArgs.antibiotics,parsedArgs.sampleName,parsedArgs.output,parsedArgs.wd,
              parsedArgs.f_phylotree,parsedArgs.f_kma)
