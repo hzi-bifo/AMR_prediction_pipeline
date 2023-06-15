@@ -78,8 +78,8 @@ bash install/install.sh
 
 2. ResFinder 4.0 https://bitbucket.org/genomicepidemiology/resfinder/src/master/ accessed on May 2021
 
-## Reference
-1. Kover2.0 
-  
-2. PhenotypeSeeker 0.7.3
+## References
+1. Kover2.0
+2. 
+3. PhenotypeSeeker 0.7.3
  
