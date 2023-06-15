@@ -80,6 +80,6 @@ bash install/install.sh
 
 ## References
 1. Kover2.0
-2. 
-3. PhenotypeSeeker 0.7.3
+ 
+2. PhenotypeSeeker 0.7.3
  
