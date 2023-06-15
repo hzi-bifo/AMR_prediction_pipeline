@@ -34,7 +34,7 @@ def GetPheno(species,output,f_phylotree,f_kma):
     PHENO = pd.concat([pheno_pts, pheno_kover,pheno_res], axis=1, join="inner")
     PHENO['voting_temp'] = PHENO.apply(lambda row: row.pts + row.kover+ row.resfinder, axis=1)
 
-    PHENO['voting'] = PHENO['voting_temp'].apply( lambda x: "R" if x>2 else "S")
+    PHENO['voting'] = PHENO['voting_temp'].apply( lambda x: "R" if x>1 else "S")
     pheno_table = PHENO[['voting']]
     pheno_table.to_csv(output+ species+'_voting_'+f_folder+'_result.txt', sep="\t",index=True)
 
