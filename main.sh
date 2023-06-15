@@ -64,6 +64,11 @@ else
         echo "Software: ResFinder "
       snakemake --cores ${n_jobs} -s ./workflow/resfinder.smk --directory $AMR_HOME --use-conda
       fi
+
+      if [[ ${Software} == *"voting"* ]]; then
+        echo "Software: voting "
+      snakemake --cores ${n_jobs} -s ./workflow/voting.smk --directory $AMR_HOME --use-conda
+      fi
       ########################################################################################################################
 
 fi
