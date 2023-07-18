@@ -74,7 +74,7 @@ bash install/install.sh
 
 
 ## Third parties
-1. DSK https://github.com/GATB/dsk accessed on April 2022
+1. DSK https://github.com/GATB/dsk accessed on April 2024
 
 2. ResFinder 4.0 https://bitbucket.org/genomicepidemiology/resfinder/src/master/ accessed on May 2021
 
