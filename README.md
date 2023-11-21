@@ -79,3 +79,15 @@ bash install/install.sh
 2. ResFinder 4.0 https://bitbucket.org/genomicepidemiology/resfinder/src/master/ accessed on May 2021
 
 
+
+
+## <a name="license"></a> License
+MIT License
+## <a name="citation"></a> Citation
+
+
+## <a name="contact"></a> Contact
+- Open an  [issue](https://github.com/hzi-bifo/AMR_prediction_pipeline/issues) in the repository.
+- Send an email to Kaixin Hu (Kaixin.Hu@helmhotz-hzi.de).
+
+
