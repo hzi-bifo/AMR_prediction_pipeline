@@ -74,19 +74,6 @@ else
 fi
 
 
-#todo progress bar check if --verbose work
-
-##--conda-prefix=$AMR_HOME/workflow/envs
-##--conda-prefix=$AMR_HOME/workflow/envs --dry-run --conda-base-path=$( dirname $( dirname $( /usr/bin/which conda ) ) )
-
-
-
-## todo for future:
-### 1. make  a dic that inidicting which software is recommended. And it finally gives results based on that dic.
-## 2.  the prediction is made using our software recommendation list, if multiple methods are tied best for a \
-## specific targeted species-drug, then we used the methods by order of Point-/ResFinder, Kover, PhenotypeSeeker.
-## P. aeruginosa-MEM, and A. baumannii-SXT are predicted by the second best method as Seq2Geno2Pheno and Aytan-Aktug is not yet available.
-## 3. ensemble voting
-
+ 
 
 
