@@ -1,9 +1,7 @@
 # AMR phenotype prediction 
 
 
-This pipeline is an integrated sodtware for AMR phenotype prediction, based on  [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker), [Kover 2.0](https://github.com/aldro61/kover), and [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/). 
-
- Prediction range of <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">species and antibiotics<a> and  <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Recommendation-software"> recommendation software<a>  for each species-antibiotic combination is based on our <a href="https://github.com/hzi-bifo/AMR_benchmarking">benchmarking work<a>. The <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics"> "Number of genomes"<a>  column indicates the number of genomes used for training ML models.
+This pipeline is an integrated software for AMR phenotype prediction, based on  [PhenotypeSeeker 0.7.3](https://github.com/bioinfo-ut/PhenotypeSeeker), [Kover 2.0](https://github.com/aldro61/kover), and [ResFinder 4.0](https://bitbucket.org/genomicepidemiology/resfinder/src/master/), with prediction range of <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics">species and antibiotics<a> and  <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Recommendation-software">. The <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics"> "Number of genomes"<a>  column indicates the number of genomes used for training ML models. The <a href="https://github.com/hzi-bifo/AMR_benchmarking/wiki/Species-and-antibiotics"> "Number of genomes"<a>  column indicates the number of genomes used for training ML models. Recommendation software<a>  for each species-antibiotic combination is based on our <a href="https://github.com/hzi-bifo/AMR_benchmarking">benchmarking work<a>. 
 
 
 
