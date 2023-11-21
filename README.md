@@ -12,7 +12,11 @@ This snakemake-based pipeline is an integrated software for AMR phenotype predic
 - C++/11 capable compiler (e.g. gcc 4.7+, clang 3.5+, Apple/clang 6.0+),  see  <a href="https://github.com/GATB/dsk"> DSK<a>
 - CMake 3.1+, see  <a href="https://github.com/GATB/dsk"> DSK<a>
   
-  
+## Install
+
+```
+bash install/install.sh 
+```
   
 ## <a name="input"></a>Input file
 The input file is a yaml file `Config.yaml` at the root folder where all options are described:
@@ -38,12 +42,6 @@ The input file is a yaml file `Config.yaml` at the root folder where all options
 
 
 
-
-## Install
-
-```
-bash install/install.sh 
-```
 
  ## Usage
   
