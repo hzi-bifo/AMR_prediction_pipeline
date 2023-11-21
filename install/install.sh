@@ -72,7 +72,6 @@ cd ${AMR_HOME}
 cd ./AMR_software/Kover/dsk/scripts  # we suppose you are in the build directory
 ./simple_test.sh
 echo "dsk installed."
-#
 cd ${AMR_HOME}
 
 ########################################################################################################
