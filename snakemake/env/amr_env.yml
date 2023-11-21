@@ -1,9 +1,0 @@
-name: amr_env
-channels:
-  - conda-forge/label/broken
-  - conda-forge
-  - defaults
-dependencies:
-  - python==3.8
-  - pandas==1.4.3
-
